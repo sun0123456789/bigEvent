@@ -12,6 +12,9 @@ $(function () {
       }
     );
   });
+  getMessage();
+});
+function getMessage() {
   $.ajax({
     url: "/my/userinfo",
     type: "get",
@@ -20,18 +23,18 @@ $(function () {
       if (res.status !== 0) {
         return layui.layer.msg("获取信息失败");
       }
-      load(res);
+      loadPage(res);
     },
   });
-  function load(res) {
-    var name = res.data.nickname || res.data.username;
-    $(".myname").html("欢迎 " + res.data.nickname);
-    if (res.data.user_pic !== "") {
-      $(".avatar").hide();
-      $(".layui-nav-img").attr("src", res.data.user_pic).show();
-    } else {
-      $(".avatar").html(name[0].toUpperCase()).show();
-      $(".layui-nav-img").hide();
-    }
+}
+function loadPage(res) {
+  var name = res.data.nickname || res.data.username;
+  $(".myname").html("欢迎 " + res.data.nickname);
+  if (res.data.user_pic !== "") {
+    $(".avatar").hide();
+    $(".layui-nav-img").attr("src", res.data.user_pic).show();
+  } else {
+    $(".avatar").html(name[0].toUpperCase()).show();
+    $(".layui-nav-img").hide();
   }
-});
+}
