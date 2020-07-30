@@ -12,9 +12,11 @@ $(function () {
       }
     );
   });
+
   getMessage();
 });
 function getMessage() {
+  console.log(this);
   $.ajax({
     url: "/my/userinfo",
     type: "get",
